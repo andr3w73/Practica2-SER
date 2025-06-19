@@ -1,0 +1,7 @@
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\drivers/fsl_gpio.h:153:20:GPIO_PinWrite	24	static
+../source/lwip_mqtt_freertos.c:119:6:BOARD_InitModuleClock	8	static
+../source/lwip_mqtt_freertos.c:125:13:MDIO_Init	16	static
+../source/lwip_mqtt_freertos.c:134:17:MDIO_Write	16	static
+../source/lwip_mqtt_freertos.c:139:17:MDIO_Read	16	static
+../source/lwip_mqtt_freertos.c:151:13:stack_init	72	static
+../source/lwip_mqtt_freertos.c:203:5:mqtt_initialize	24	static

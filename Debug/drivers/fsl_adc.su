@@ -1,0 +1,9 @@
+../drivers/fsl_adc.h:488:20:ADC_DoSoftwareReset	24	static
+../drivers/fsl_adc.c:43:17:ADC_GetInstance	24	static
+../drivers/fsl_adc.c:69:6:ADC_Init	24	static
+../drivers/fsl_adc.c:155:6:ADC_GetDefaultConfig	16	static
+../drivers/fsl_adc.c:188:6:ADC_Deinit	16	static
+../drivers/fsl_adc.c:206:6:ADC_SetScanChannel	16	static
+../drivers/fsl_adc.c:232:10:ADC_DoAutoCalibration	24	static
+../drivers/fsl_adc.c:268:6:ADC_ConfigAudioVoiceLevel	24	static
+../drivers/fsl_adc.c:284:10:ADC_GetStatusFlags	24	static

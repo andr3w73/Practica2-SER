@@ -1,0 +1,13 @@
+../drivers/fsl_cache.c:65:10:CACHE64_GetInstance	24	static
+../drivers/fsl_cache.c:89:10:CACHE64_GetInstanceByAddr	40	static
+../drivers/fsl_cache.c:126:10:CACHE64_Init	32	static
+../drivers/fsl_cache.c:166:6:CACHE64_GetDefaultConfig	24	static
+../drivers/fsl_cache.c:181:6:CACHE64_EnableCache	16	static
+../drivers/fsl_cache.c:198:6:CACHE64_DisableCache	16	static
+../drivers/fsl_cache.c:215:6:CACHE64_InvalidateCache	16	static
+../drivers/fsl_cache.c:239:6:CACHE64_InvalidateCacheByRange	56	static
+../drivers/fsl_cache.c:285:6:CACHE64_CleanCache	16	static
+../drivers/fsl_cache.c:309:6:CACHE64_CleanCacheByRange	56	static
+../drivers/fsl_cache.c:355:6:CACHE64_CleanInvalidateCache	16	static
+../drivers/fsl_cache.c:381:6:CACHE64_CleanInvalidateCacheByRange	56	static
+../drivers/fsl_cache.c:428:6:CACHE64_EnableWriteBuffer	16	static

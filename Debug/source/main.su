@@ -1,0 +1,12 @@
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\CMSIS/core_cm33.h:2390:22:__NVIC_EnableIRQ	16	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\drivers/fsl_common_arm.h:586:24:EnableIRQ	24	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\drivers/fsl_adc.h:700:20:ADC_DoSoftwareTrigger	16	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\drivers/fsl_adc.h:710:20:ADC_StopConversion	16	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\drivers/fsl_adc.h:721:24:ADC_GetConversionResult	16	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\drivers/fsl_adc.h:752:20:ADC_EnableInterrupts	16	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\drivers/fsl_adc.h:793:20:ADC_ClearStatusFlags	16	static
+../source/main.c:39:6:GAU_ADC0_IRQHandler	8	static
+../source/main.c:47:13:ADCTimerCallback	16	static
+../source/main.c:52:13:ADCTask	40	static
+../source/main.c:92:6:start_adc_timer	24	static
+../source/main.c:97:5:main	24	static

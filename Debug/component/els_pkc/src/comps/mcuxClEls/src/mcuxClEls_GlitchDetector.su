@@ -1,0 +1,9 @@
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\component\els_pkc\src\comps\mcuxClEls\inc/internal/mcuxClEls_Internal.h:68:20:mcuxClEls_setInput0_fixedSize	16	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\component\els_pkc\src\comps\mcuxClEls\inc/internal/mcuxClEls_Internal.h:100:20:mcuxClEls_setOutput_fixedSize	16	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\component\els_pkc\src\comps\mcuxClEls\inc/internal/mcuxClEls_Internal.h:133:20:mcuxClEls_startCommand	32	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\component\els_pkc\src\comps\mcuxClEls\inc/internal/mcuxClEls_Internal.h:147:24:mcuxClEls_getSfrField	24	static
+C:\Embebidos_Redes\Prac2\prac2_612_t3_lwip_mqtt_freertos_seR2\component\els_pkc\src\comps\mcuxClEls\inc/internal/mcuxClEls_Internal.h:166:20:mcuxClEls_isBusy	4	static
+../component/els_pkc/src/comps/mcuxClEls/src/mcuxClEls_GlitchDetector.c:26:63:mcuxClEls_GlitchDetector_LoadConfig_Async	48	static
+../component/els_pkc/src/comps/mcuxClEls/src/mcuxClEls_GlitchDetector.c:44:63:mcuxClEls_GlitchDetector_Trim_Async	48	static
+../component/els_pkc/src/comps/mcuxClEls/src/mcuxClEls_GlitchDetector.c:63:63:mcuxClEls_GlitchDetector_GetEventCounter	40	static
+../component/els_pkc/src/comps/mcuxClEls/src/mcuxClEls_GlitchDetector.c:81:63:mcuxClEls_GlitchDetector_ResetEventCounter	32	static
