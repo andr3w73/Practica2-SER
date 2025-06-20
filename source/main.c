@@ -48,46 +48,6 @@ static void ADCTimerCallback(TimerHandle_t xTimer) {
 	xSemaphoreGiveFromISR(xADCSem, NULL);
 }
 
-/* Tarea que toma semáforo, dispara ADC, espera fin e imprime */
-static void ADCTask(void *pvParameters) {
-	uint32_t raw,pct;
-	uint8_t is_Alarm_On = 0;
-	const char *my_topic = "alarm/oxygen_lvl";
-
-	while (1) {
-		if (xSemaphoreTake(xADCSem, portMAX_DELAY) == pdTRUE) {
-			ADC_DoSoftwareTrigger(DEMO_ADC_BASE);
-			while (!gConvReady) {
-			}
-			raw = ADC_GetConversionResult(DEMO_ADC_BASE);
-			gConvReady = false;
-			ADC_StopConversion(DEMO_ADC_BASE);
-
-			/* Mapea raw [0–35000] a pct [0–100] */
-			pct = (raw * 100U) / 36000U;
-
-			PRINTF("ADC raw: %u → %u%%\r\n", raw, pct);
-
-			/* Envía el porcentaje como mensaje MQTT */
-			char msg[5];
-			snprintf(msg, sizeof(msg), "%u", pct);
-//			mqtt_send_message(my_topic, msg);
-
-//			if (1 == is_Alarm_On)
-//			{
-//				char msg[] = "Suministrando oxigeno...";
-//				mqtt_send_message(my_topic, msg);
-//				is_Alarm_On = 0;
-//			}
-//			else
-//			{
-//				char msg[] = "Deteniendo oxigeno...";
-//				mqtt_send_message(my_topic, msg);
-//				is_Alarm_On = 1;
-//			}
-		}
-	}
-}
 
 void start_adc_timer(void) {
 	if (xTimerStart(xADCTimer, 0) != pdPASS) {
@@ -142,9 +102,6 @@ int main(void) {
 	xADCTimer = xTimerCreate("ADCTmr", pdMS_TO_TICKS(1000), pdTRUE, NULL,
 			ADCTimerCallback);
 	//xTimerStart(xADCTimer, 0);
-
-	/* Crea la tarea que muestrea el ADC */
-//	xTaskCreate(ADCTask, "ADC", ADC_TASK_STACK, NULL, ADC_TASK_PRIORITY, NULL);
 
 	/* Arranca scheduler */
 	vTaskStartScheduler();

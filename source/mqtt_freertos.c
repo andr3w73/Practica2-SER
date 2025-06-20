@@ -119,7 +119,7 @@ static void mqtt_incoming_publish_cb(void *arg, const char *topic, u32_t tot_len
 
     // Copiar el tópico a la variable global para que mqtt_incoming_data_cb pueda acceder a él
     strncpy(current_incoming_topic, topic, sizeof(current_incoming_topic) - 1);
-    current_incoming_topic[sizeof(current_incoming_topic) - 1] = '\0'; // Asegurar terminación nula
+    current_incoming_topic[sizeof(current_incoming_topic) - 1] = '\0';
 
 
     PRINTF("Received %u bytes from the topic \"%s\": \"", tot_len, topic);
@@ -128,24 +128,22 @@ static void mqtt_incoming_publish_cb(void *arg, const char *topic, u32_t tot_len
 /*!
  * @brief Called when received incoming published message fragment.
  */
-// es para recibir data de un topico
+
 static void mqtt_incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t flags)
 {
-    char received_message[256]; // Ajusta el tamaño según tus necesidades
+    char received_message[256];
 	int i;
 	float oxygen_level;
-	const char *incoming_topic; // Necesitamos el tópico para verificar si es el de oxígeno
+	const char *incoming_topic;
     const char *alarm_source = "desconocido"; // Para indicar la fuente de la alarma
 
     LWIP_UNUSED_ARG(arg);
 
-    // Copiar los datos al buffer y asegurar que sea una cadena nula-terminada
-    if (len < sizeof(received_message)) {
+   if (len < sizeof(received_message)) {
         memcpy(received_message, data, len);
         received_message[len] = '\0';
     } else {
-        // Manejar el caso de que el mensaje sea demasiado largo para el buffer
-        PRINTF("Mensaje entrante demasiado largo para el buffer.\r\n");
+       PRINTF("Mensaje entrante demasiado largo para el buffer.\r\n");
         return;
     }
 
@@ -153,20 +151,16 @@ static void mqtt_incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t f
     if (sscanf(received_message, "%f", &oxygen_level) == 1) {
         PRINTF("Nivel de oxígeno recibido: %.2f%%\r\n", oxygen_level);
 
-        // Determinar la fuente del mensaje basado en el tópico
+        // Determinar la fuente del mensaje basado en el topic
         if (strstr(current_incoming_topic, "incubator") != NULL) {
             alarm_source = "incubadora";
             if (oxygen_level < UMBRAL_OXIGENO_BAJO) {
                 PRINTF("ALARMA: Nivel de oxígeno bajo (%.2f%%) en %s !!!\r\n", oxygen_level, alarm_source);
-                char alarm_message_buffer[256]; // Usar un buffer local
-                snprintf(alarm_message_buffer, sizeof(alarm_message_buffer), "%s: Nivel de oxigeno bajo (%.2f%%)", alarm_source, oxygen_level);
                 mqtt_send_message("alarm/oxygen_lvl", "Incubadora: oxigeno bajo"); // Pasa el buffer
                // turn_on_red_led();
             }
             else
             {
-            	char normal_message_buffer[256];
-            	snprintf(normal_message_buffer, sizeof(normal_message_buffer), "%s: Nivel de oxigeno normal (%.2f%%)", alarm_source, oxygen_level);
             	mqtt_send_message("alarm/oxygen_lvl", "Incubadora: oxigeno normal");
             	//turn_led_off();
             }
@@ -175,23 +169,19 @@ static void mqtt_incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t f
             alarm_source = "tanque de oxigeno";
             if (oxygen_level < UMBRAL_OXIGENO_BAJO) {
                 PRINTF("ALARMA: Nivel de oxígeno bajo (%.2f%%) en %s !!!\r\n", oxygen_level, alarm_source);
-                char alarm_message_buffer[256]; // Usar un buffer local
-                snprintf(alarm_message_buffer, sizeof(alarm_message_buffer), "%s: Nivel de oxigeno bajo (%.2f%%)", alarm_source, oxygen_level);
-                mqtt_send_message("alarm/oxygen_lvl", "Tanque: oxigeno bajo"); // Pasa el buffer
-               // turn_on_red_led();
+                mqtt_send_message("alarm/oxygen_lvl", "Tanque: oxigeno bajo");
+                mqtt_send_message("tank/alarm", "ON");
+
             }
             else
             {
-            	char normal_message_buffer[256];
-            	snprintf(normal_message_buffer, sizeof(normal_message_buffer), "%s: Nivel de oxigeno normal (%.2f%%)", alarm_source, oxygen_level);
-            	mqtt_send_message("alarm/oxygen_lvl", "Tanque: oxigeno bajo");
-            	//turn_led_off();
+            	mqtt_send_message("alarm/oxygen_lvl", "Tanque: oxigeno normal");
+                mqtt_send_message("tank/alarm", "OFF");
+
             }
 
         }
 
-    } else {
-        PRINTF("No se pudo parsear el nivel de oxígeno del mensaje: \"%s\"\r\n", received_message);
     }
 
 
